@@ -1,6 +1,7 @@
 package br.com.fiap.ms.eurosync.dto;
 
 import br.com.fiap.ms.eurosync.entity.Professor;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonPropertyOrder({ "id", "nome", "email" })
 public class ProfessorResponseDTO {
 
     private Long id;

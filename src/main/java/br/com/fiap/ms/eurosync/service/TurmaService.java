@@ -71,7 +71,7 @@ public class TurmaService {
     public void deleteTurmaById(Long id) {
 
         if (!turmaRepository.existsById(id)) {
-            throw new EntityNotFoundException("Turma não encontrada. ID: " + id);
+            throw new ResourceNotFoundException("Turma não encontrada. ID: " + id);
         }
 
         turmaRepository.deleteById(id);

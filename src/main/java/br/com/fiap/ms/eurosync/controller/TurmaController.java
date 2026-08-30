@@ -1,5 +1,6 @@
 package br.com.fiap.ms.eurosync.controller;
 
+import br.com.fiap.ms.eurosync.dto.ProfessorResponseDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaRequestDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaResponseDTO;
 import br.com.fiap.ms.eurosync.service.TurmaService;
@@ -35,6 +36,15 @@ public class TurmaController {
         TurmaResponseDTO turmaDTO = turmaService.findTurmaById(id);
 
         return ResponseEntity.ok(turmaDTO);
+    }
+
+    // visualizar todos os professores de uma turma
+    @GetMapping("/{id}/professores")
+    public ResponseEntity<List<ProfessorResponseDTO>> getAllProfessoresByTurma(@PathVariable Long id) {
+
+        List<ProfessorResponseDTO> list = turmaService.findAllProfessoresByTurmaId(id);
+
+        return ResponseEntity.ok(list);
     }
 
     // criar turma

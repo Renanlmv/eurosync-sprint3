@@ -1,7 +1,9 @@
 package br.com.fiap.ms.eurosync.service;
 
+import br.com.fiap.ms.eurosync.dto.ProfessorResponseDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaRequestDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaResponseDTO;
+import br.com.fiap.ms.eurosync.entity.Professor;
 import br.com.fiap.ms.eurosync.entity.Turma;
 import br.com.fiap.ms.eurosync.exceptions.ResourceNotFoundException;
 import br.com.fiap.ms.eurosync.repository.TurmaRepository;
@@ -35,6 +37,18 @@ public class TurmaService {
         );
 
         return new TurmaResponseDTO(turma);
+    }
+
+    // visualizar todos os professores de uma turma
+    @Transactional(readOnly = true)
+    public List<ProfessorResponseDTO> findAllProfessoresByTurmaId(Long id) {
+
+        try {
+            List<Professor> professores = turmaRepository.getReferenceById(id).getProfessores();
+            return professores.stream().map(ProfessorResponseDTO::new).toList();
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Turma não encontrada. ID: " + id);
+        }
     }
 
     // criar turma

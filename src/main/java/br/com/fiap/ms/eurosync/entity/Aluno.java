@@ -24,6 +24,4 @@ public class Aluno {
     @ManyToOne
     @JoinColumn(name = "turma_id")
     private Turma turma;
-
-
 }

@@ -1,6 +1,7 @@
 package br.com.fiap.ms.eurosync.controller;
 
 import br.com.fiap.ms.eurosync.dto.ProfessorResponseDTO;
+import br.com.fiap.ms.eurosync.dto.TurmaProfessorResponseDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaRequestDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaResponseDTO;
 import br.com.fiap.ms.eurosync.service.TurmaService;
@@ -60,6 +61,14 @@ public class TurmaController {
                 .toUri();
 
         return ResponseEntity.created(uri).body(turmaDTO);
+    }
+
+    // associar professor a turma
+    @PostMapping("/{turmaId}/professores/{professorId}")
+    ResponseEntity<TurmaProfessorResponseDTO> associateProfessorToTurma(@PathVariable Long turmaId, @PathVariable Long professorId) {
+        TurmaProfessorResponseDTO responseDTO = turmaService.associateProfessorToTurmaById(turmaId, professorId);
+
+        return ResponseEntity.ok(responseDTO);
     }
 
     // editar turma

@@ -1,5 +1,7 @@
 package br.com.fiap.ms.eurosync.controller;
 
+import br.com.fiap.ms.eurosync.dto.ProfessorResponseDTO;
+import br.com.fiap.ms.eurosync.dto.TurmaProfessorResponseDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaRequestDTO;
 import br.com.fiap.ms.eurosync.dto.TurmaResponseDTO;
 import br.com.fiap.ms.eurosync.service.TurmaService;
@@ -37,6 +39,15 @@ public class TurmaController {
         return ResponseEntity.ok(turmaDTO);
     }
 
+    // visualizar todos os professores de uma turma
+    @GetMapping("/{id}/professores")
+    public ResponseEntity<List<ProfessorResponseDTO>> getAllProfessoresByTurma(@PathVariable Long id) {
+
+        List<ProfessorResponseDTO> list = turmaService.findAllProfessoresByTurmaId(id);
+
+        return ResponseEntity.ok(list);
+    }
+
     // criar turma
     @PostMapping
     public ResponseEntity<TurmaResponseDTO> createTurma(@RequestBody @Valid TurmaRequestDTO inputDTO) {
@@ -50,6 +61,14 @@ public class TurmaController {
                 .toUri();
 
         return ResponseEntity.created(uri).body(turmaDTO);
+    }
+
+    // associar professor a turma
+    @PostMapping("/{turmaId}/professores/{professorId}")
+    ResponseEntity<TurmaProfessorResponseDTO> associateProfessorToTurma(@PathVariable Long turmaId, @PathVariable Long professorId) {
+        TurmaProfessorResponseDTO responseDTO = turmaService.associateProfessorToTurmaById(turmaId, professorId);
+
+        return ResponseEntity.ok(responseDTO);
     }
 
     // editar turma

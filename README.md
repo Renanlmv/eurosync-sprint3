@@ -46,6 +46,21 @@ Construir uma API REST para gerenciar alunos, professores e turmas, garantindo p
 
 ---
 
+## Como executar a API no IntelliJ
+    1° Baixe ou Clone o projeto em sua máquina
+    2° Abra-o no IntelliJ
+    3º Verifique se o SDK está configurado para 25:
+        - No canto superior esquerdo, no "hambúrguer",
+          selecione 'Project Structure'
+        - No SDK, selecione 25
+        - No canto inferior direito da janela,
+          selecione 'Apply'
+    4° Selecione a classe MsEurosyncApplication
+    5° Clique no botão verde 'Run' no topo da página
+       ou ao lado esquerdo do nome da classe
+
+---
+
 ## Orientações de Requisições HTTP
 
 ## Aluno
